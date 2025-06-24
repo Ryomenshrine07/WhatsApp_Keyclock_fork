@@ -7,9 +7,10 @@ ENV KC_DB_PASSWORD=${KC_DB_PASSWORD}
 ENV KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
 ENV KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
 
-COPY entrypoint.sh /opt/keycloak/entrypoint.sh
-RUN chmod +x /opt/keycloak/entrypoint.sh
+WORKDIR /opt/keycloak-custom
+COPY entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
 
 EXPOSE 8080
 
-ENTRYPOINT ["/opt/keycloak/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
